@@ -7,9 +7,9 @@ import string
 from Resources.letters_database import all_letters
 
 
-def combine_letters(some_text, flag=True, upper=False):
+def combine_letters(some_text, switch=True, upper=False):
     result = ''
-    if flag:
+    if switch:
         for i in some_text.lower():
             result += random.choice(all_letters.get(i)[0])
     else:
@@ -27,15 +27,16 @@ def combine_letters(some_text, flag=True, upper=False):
     return result
 
 
+def user_interaction():
+    while True:
+        input_text = input('Что ж, пиши что нужно перекомбинировать.\n')
+        if input_text == 'end':
+            return 'Пока что хватит'
+        if input_text:
+            result = combine_letters(input_text)
+            print(f'Вот тебе результат: {result}\n'
+                  f'Доволен?')
+
+
 if __name__ == '__main__':
-    print()
-    print(combine_letters('Ваше мнение говно ебаное, админы - пидорасы, '
-                          'ваш фильтр против мата - хуита'))
-    print()
-    print(combine_letters('Съешь ещё этих мягких французских булок да выпей чаю, '
-                          'можешь добавить себе сахара по вкусу.'))
-    print()
-    print(combine_letters('Eat some more of these soft French rolls and drink some tea,'
-                          ' you can add sugar to your taste.'))
-    print()
-    print(combine_letters('Александр Владимирович!', False, True))
+    print(user_interaction())
